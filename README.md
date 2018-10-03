@@ -1,2 +1,4 @@
-# anbyseg
-a jupyter extension for chinese reading
+Anbyseg
+===========
+
+An extension for chinese reading that allows you to split sentences according to punctuation.
