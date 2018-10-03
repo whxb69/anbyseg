@@ -6,6 +6,29 @@ define([
 
     var seg = function(){
       var cells = IPython.notebook.get_cells();
+      var cindex = 0;
+      var len = cells.length;
+      while (cindex < len){
+      	var ctext = cells[cindex].get_text();
+      	var ctype = cells[cindex].cell_type;
+      	if(ctype == 'markdown' && ctext != '<br>' && ctext.search("。") == -1){
+      		var celll = IPython.notebook.insert_cell_below('markdown');
+      		IPython.notebook.select_next();
+      		var cellll = IPython.notebook.insert_cell_below('markdown');
+      		cells[cindex].set_text('<br>');
+      		cells[cindex].execute();
+      		celll.set_text(ctext);
+      		celll.execute();
+      		cellll.set_text('<br>');
+      		cellll.execute();
+      		len = len + 2;
+      		cells = IPython.notebook.get_cells();
+
+      	}
+      	cindex = cindex + 1;
+      }
+
+      var cells = IPython.notebook.get_cells();
       var c = 0;
       var len = cells.length;
       IPython.notebook.select(0);
